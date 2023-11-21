@@ -1,6 +1,7 @@
 package main
 
 import (
+	"project-management-application/db"
 	"project-management-application/handlers"
 
 	"github.com/gin-gonic/gin"
@@ -9,11 +10,18 @@ import (
 func main() {
 	r := gin.Default();
 
-	r.GET("/user",handlers.GetUser);
+	db.ConnectDB();
+
+	r.GET("/user:id",handlers.GetUser);
 	r.POST("/user",handlers.CreateUser);
 
-	r.GET("/product",handlers.GetProduct);
-	r.POST("/product",handlers.CreateProduct);
+	r.GET("/product:id",handlers.GetProduct);
+	r.POST("/products",handlers.CreateProduct);
+	r.GET("/products", handlers.ListProducts);
+	r.PUT("/products:id",handlers.UpdateProduct);
+	r.DELETE("/products:id",handlers.DeleteProduct);
+
+	r.GET("/image-analysis", handlers.ImageAnalysis);
 
 	r.Run(":8888");
 }
