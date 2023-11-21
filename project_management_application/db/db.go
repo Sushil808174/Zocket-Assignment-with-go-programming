@@ -8,7 +8,7 @@ import (
 	"project-management-application/models"
 )
 
-var db *gorm.DB
+var DB *gorm.DB
 
 // ConnectDB connects to the database and performs migrations.
 func ConnectDB() {
@@ -17,12 +17,12 @@ func ConnectDB() {
 
 	// Open a connection to the MySQL database
 	var err error
-	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println("Failed to connect to the database:", err)
 		return
 	}
 
 	// Perform database migrations
-	db.AutoMigrate(models.User{}, models.Product{})
+	DB.AutoMigrate(models.User{}, models.Product{})
 }

@@ -11,8 +11,8 @@ func main() {
 	r := gin.Default();
 
 	db.ConnectDB();
-
-	r.GET("/user:id",handlers.GetUser);
+	r.GET("/hello",handlers.Hello);
+	r.GET("/user/:id",handlers.GetUser);
 	r.POST("/user",handlers.CreateUser);
 
 	r.GET("/product:id",handlers.GetProduct);

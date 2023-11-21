@@ -2,6 +2,8 @@ package handlers
 
 import (
 	"net/http"
+	"project-management-application/db"
+	"project-management-application/models"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,7 +18,7 @@ func CreateProduct(c *gin.Context) {
 	// Validate that the provided user_id exists in the Users table
 	userID := c.PostForm("user_id")
 	var user models.User
-	if err := db.First(&user, userID).Error; err != nil {
+	if err := db.DB.First(&user, userID).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user_id"})
 		return
 	}
@@ -26,7 +28,7 @@ func CreateProduct(c *gin.Context) {
 
 	// Create a new product in the database (replace this with your database logic)
 	// For simplicity, we'll assume you have a global 'db' variable from db.go
-	if err := db.Create(&productInput).Error; err != nil {
+	if err := db.DB.Create(&productInput).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create product"})
 		return
 	}
@@ -38,7 +40,7 @@ func GetProduct(c *gin.Context) {
 	productID := c.Param("id")
 
 	var product models.Product
-	if err := db.First(&product, productID).Error; err != nil {
+	if err := db.DB.First(&product, productID).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
 		return
 	}
@@ -51,7 +53,7 @@ func ListProducts(c *gin.Context){
 
 	// Retrieve all products from the database (replace this with your database logic)
 	// For simplicity, we'll assume you have a global 'db' variable from db.go
-	if err := db.Find(&products).Error; err != nil {
+	if err := db.DB.Find(&products).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve products"})
 		return
 	}
@@ -59,7 +61,7 @@ func ListProducts(c *gin.Context){
 	// Fetch associated user details for each product
 	for i := range products {
 		var user models.User
-		if err := db.First(&user, products[i].UserID).Error; err != nil {
+		if err := db.DB.First(&user, products[i].UserID).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve user details for a product"})
 			return
 		}
@@ -74,7 +76,7 @@ func UpdateProduct(c *gin.Context) {
 	productID := c.Param("id")
 
 	var existingProduct models.Product
-	if err := db.First(&existingProduct, productID).Error; err != nil {
+	if err := db.DB.First(&existingProduct, productID).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
 		return
 	}
@@ -87,7 +89,7 @@ func UpdateProduct(c *gin.Context) {
 
 	// Update product details in the database (replace this with your database logic)
 	// For simplicity, we'll assume you have a global 'db' variable from db.go
-	if err := db.Model(&existingProduct).Updates(updatedProduct).Error; err != nil {
+	if err := db.DB.Model(&existingProduct).Updates(updatedProduct).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update product"})
 		return
 	}
@@ -100,14 +102,14 @@ func DeleteProduct(c *gin.Context) {
 	productID := c.Param("id")
 
 	var existingProduct models.Product
-	if err := db.First(&existingProduct, productID).Error; err != nil {
+	if err := db.DB.First(&existingProduct, productID).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
 		return
 	}
 
 	// Delete the product from the database (replace this with your database logic)
 	// For simplicity, we'll assume you have a global 'db' variable from db.go
-	if err := db.Delete(&existingProduct).Error; err != nil {
+	if err := db.DB.Delete(&existingProduct).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete product"})
 		return
 	}

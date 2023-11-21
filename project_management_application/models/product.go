@@ -2,7 +2,6 @@ package models
 
 import "gorm.io/gorm"
 
-// Product model represents a product in the system.
 type Product struct {
 	gorm.Model
 	UserID                  string   `json:"user_id" gorm:"not null"`
