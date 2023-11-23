@@ -17,7 +17,7 @@ func main() {
 
 	r.GET("/product:id",handlers.GetProduct);
 	r.POST("/products",handlers.CreateProduct);
-	r.GET("/products", handlers.ListProducts);
+	// r.GET("/products", handlers.ListProducts);
 	r.PUT("/products:id",handlers.UpdateProduct);
 	r.DELETE("/products:id",handlers.DeleteProduct);
 
