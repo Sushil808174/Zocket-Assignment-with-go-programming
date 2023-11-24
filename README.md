@@ -45,6 +45,9 @@ The Project Management Application is a backend system built using the Go progra
           "product_price": 19.99
       }
 
+## ER Diagram:
+![jhgjhg](https://github.com/Sushil808174/Zocket-Assignment-with-go-programming/assets/115461689/1c081f96-c08c-46fc-913f-fc77b087108d)
+
 
 
 
