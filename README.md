@@ -8,6 +8,17 @@ The Project Management Application is a backend system built using the Go progra
 - Gin (Go web framework)
 - GORM (Go Object-Relational Mapping library)
 
+# Getting Started:
+
+## Prerequisites:
+- Go installed
+- MySQL database set up
+
+## Installation:
+- Clone the repository: git clone `https://github.com/Sushil808174/Zocket-Assignment-with-go-programming`
+- Navigate to the project directory: cd `project_management_application`
+- Run the application: go run main.go
+
 ## API Endpoints:
 1. Create User
 - Endpoint: `http://localhost:8888/user`
@@ -33,5 +44,7 @@ The Project Management Application is a backend system built using the Go progra
           "product_images": "image1.jpg",
           "product_price": 19.99
       }
+
+
 
 
