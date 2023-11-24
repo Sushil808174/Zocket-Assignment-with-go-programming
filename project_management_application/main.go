@@ -12,16 +12,8 @@ func main() {
 
 	db.ConnectDB();
 	r.GET("/hello",handlers.Hello);
-	r.GET("/user/:id",handlers.GetUser);
-	r.POST("/user",handlers.CreateUser);
-
-	r.GET("/product:id",handlers.GetProduct);
-	r.POST("/products",handlers.CreateProduct);
-	// r.GET("/products", handlers.ListProducts);
-	r.PUT("/products:id",handlers.UpdateProduct);
-	r.DELETE("/products:id",handlers.DeleteProduct);
-
-	r.GET("/image-analysis", handlers.ImageAnalysis);
+	r.POST("/user",handlers.CreateUserHandler);
+	r.POST("/product",handlers.CreateProductHandler);
 
 	r.Run(":8888");
 }
