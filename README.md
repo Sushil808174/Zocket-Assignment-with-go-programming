@@ -20,7 +20,7 @@ The Project Management Application is a backend system built using the Go progra
 - Run the application: go run main.go
 
 ## API Endpoints:
-1. Create User
+### 1. Create User
 - Endpoint: `http://localhost:8888/user`
 - Description: Create a new user in the database.
 - Request Example:
@@ -32,7 +32,7 @@ The Project Management Application is a backend system built using the Go progra
           "longitude": -122.4194
       }
 
-2. Create Product
+### 2. Create Product
 - Endpoint: `http://localhost:8888/product`
 - Description: Create a new product in the database.
 - Request Example:
